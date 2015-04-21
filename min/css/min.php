@@ -7,7 +7,9 @@ body{
 }
 h1{
 	font-size: 30px;line-height: 1.8em;
+	font-family: 'Roboto Slab', serif;
 }
+
 #shell.rendered{
 	position: fixed;
 	z-index: 1;
@@ -19,6 +21,7 @@ h1{
 	height: 1050px;
 	overflow: hidden;
 	position:relative;
+	color:#FFF;
 }
 #shell.rendered .frame{
 	position:absolute;
@@ -33,10 +36,79 @@ h1{
 .square{
 	position:absolute;
 	top:50%;left:50%;
-	margin-top:-200px;
+	margin-left:-400px;
+	width:800px;
+/*
+	-webkit-transition: margin-top .1s;
+	-ms-transition: margin-top .1s;
+	transition: margin-top .1s;*/
+}
+.square img{
+	display: block;
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	margin: 0 auto;
+}
+.square-text{
+	text-align: center;
+}
+
+.square-text h2{
+	font: 60px/1em 'Roboto Slab', serif;
+	margin-bottom:15px;
+}
+.square-text p{
+	font-size:24px;
+	max-width: 65%;
+	margin:0 auto;
+}
+
+/* Small 1 *************************/
+.small-1 .square{
+	margin-left:-300px;
+	width:600px;
+}
+.small-1 .square-text h2{
+	font-size:34px;
+}
+.small-1 .square-text p{
+	font-size:20px;
+}
+
+/* Small 2 *************************/
+.small-2 .square{
 	margin-left:-200px;
 	width:400px;
-	height: 400px;
-	background-color: #00F;
-	opacity: .5;
-}<?php if(extension_loaded("zlib")){ob_end_flush();}?>
+}
+.small-2 .square-text h2{
+	font-size:26px;
+}
+.small-2 .square-text p{
+	font-size:16px;
+}
+
+/* Small 3 *************************/
+.small-3 .square{
+	margin-left:-125px;
+	width:250px;
+}
+.small-3 .square-text h2{
+	font-size:20px;
+}
+.small-3 .square-text p{
+	max-width: 90%;
+	font-size:14px;
+}
+
+/****************************************/
+.square-text h2,
+.square-text p{
+	line-height: 1em;
+}
+
+#frame-design{
+	background-color: #19a856;
+}
+
+<?php if(extension_loaded("zlib")){ob_end_flush();}?>

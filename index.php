@@ -9,7 +9,7 @@
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	
-	<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto+Slab|Raleway:300' rel='stylesheet' type='text/css'>
 
 	<!-- CSS -->
 	<link type="text/css" rel="stylesheet" href="min/packer.php?type=css&path=css&files=reset,style"/>
@@ -19,16 +19,44 @@
 	<![endif]-->
 </head>
 <body>
-	<div id="shell">
-		<?php 
-			$colors = array('#fff568','#00b62e','#0072bc','#ff3073');
-			$length = count($colors);
-
-			for($i = 0;$i < $length; $i++){
-				$w = $i*100 + 400;
-				echo '<div class="frame" style="background-color:' . $colors[$i] . ';"><div class="fixed"><h1>Frame ' . $i . '</h1><div class="square" style="width:' . $w . 'px"></div></div></div>';
-			};
-		?>
+	<div id="shell" class="rendered">
+		<div style="background-color: rgb(255, 245, 104);" class="frame">
+			<div class="fixed">
+				<h1>Frame 0</h1>
+				<div class="square">
+					Contenido
+				</div>
+			</div>
+		</div>
+		<div class="frame" id="frame-design">
+			<div class="fixed">
+				
+				<div class="square">
+					<img src="img/1.gif"/>
+					<div class="square-text">
+						<h2>Diseñamos tu sitio web</h2>
+						<p>Creamos lo que necesitás: un sitio web bello, atractivo y fácil de usar.</p>
+					</div>
+					<img src="img/1b.png"/>
+				</div>				
+			</div>
+		</div>
+		<div style="background-color: rgb(0, 114, 188);" class="frame">
+			<div class="fixed">
+				<h1>Frame 2</h1>
+				<div class="square">
+					Contenido
+				</div>
+			</div>
+		</div>
+		<div style="background-color: rgb(255, 48, 115);" class="frame">
+			<div class="fixed">
+				<h1>Frame 3</h1>
+				<div class="square">
+					Contenido
+				</div>
+			</div>
+		</div>
 	</div>
 	<script src="js/libs/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="min/packer.php?type=js&path=js&files=app"></script>

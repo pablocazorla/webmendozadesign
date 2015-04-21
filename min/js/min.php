@@ -28,7 +28,23 @@
 			this.$elem = $elem;
 			this.index = index;
 			this.$fixed = $elem.find('> .fixed');
+			this.$square = $elem.find('.square');
 			this.posY = 0;
+
+			this.squareSmallLevel = 0;
+
+			this.timerSquareSize = null;
+
+			this.setSquareSize(this);
+			this.currentHeightWindow = $window.height()+100;
+
+			var self = this;
+			$window.resize(function() {
+				clearTimeout(self.timerSquareSize);
+				self.timerSquareSize = null;
+				self.setSquareSize(self);
+			});
+
 			return this;
 		},
 		setPosition: function() {
@@ -44,6 +60,50 @@
 		},
 		setFixedHeight: function() {
 			this.$fixed.height(heightWindow);
+		},
+		setSquareSize: function(self) {
+
+			self.timerSquareSize = setTimeout(function() {
+				var wh = $window.height(),
+					testLess = function() {
+						var h = self.$square.height();
+						if ((h + 10) > wh) {
+							if (self.squareSmallLevel < 3) {
+								self.$fixed.removeClass('small-' + self.squareSmallLevel);
+								self.squareSmallLevel++;
+								self.$fixed.addClass('small-' + self.squareSmallLevel);
+								testLess();
+							}
+						}
+					},
+					testMore = function() {
+						var h = self.$square.height();
+						if ((h + 10) < wh) {
+							if (self.squareSmallLevel > 0) {
+								self.$fixed.removeClass('small-' + self.squareSmallLevel);
+								self.squareSmallLevel--;
+								self.$fixed.addClass('small-' + self.squareSmallLevel);
+								testMore();
+							}
+						}
+					},
+					testSize = function() {
+						if (self.currentHeightWindow > wh) {
+							// less
+							testLess();
+						} else if(self.currentHeightWindow < wh){
+							// more
+							testMore();
+						}
+						self.currentHeightWindow = wh;
+					};
+				testSize();
+				setTimeout(function() {
+					var mt = Math.round(self.$square.height() / 2);
+					self.$square.css('margin-top', '-' + mt + 'px');
+					testSize();
+				}, 60);
+			}, 200);
 		}
 	};
 
