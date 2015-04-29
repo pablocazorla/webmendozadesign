@@ -3,33 +3,31 @@
 
 	'use strict';
 
-	var Utils = {
-		cssfix: (function() {
-			var style = document.createElement('dummy').style,
-				prefixes = 'Webkit Moz O ms Khtml'.split(' '),
-				memory = {};
+	var cssfix = (function() {
+		var style = document.createElement('dummy').style,
+			prefixes = 'Webkit Moz O ms Khtml'.split(' '),
+			memory = {};
 
-			return function(prop) {
-				if (typeof memory[prop] === "undefined") {
+		return function(prop) {
+			if (typeof memory[prop] === "undefined") {
 
-					var ucProp = prop.charAt(0).toUpperCase() + prop.substr(1),
-						props = (prop + ' ' + prefixes.join(ucProp + ' ') + ucProp).split(' ');
+				var ucProp = prop.charAt(0).toUpperCase() + prop.substr(1),
+					props = (prop + ' ' + prefixes.join(ucProp + ' ') + ucProp).split(' ');
 
-					memory[prop] = null;
-					for (var i in props) {
-						if (style[props[i]] !== undefined) {
-							memory[prop] = props[i];
-							break;
-						}
+				memory[prop] = null;
+				for (var i in props) {
+					if (style[props[i]] !== undefined) {
+						memory[prop] = props[i];
+						break;
 					}
-
 				}
 
-				return memory[prop];
-			};
+			}
 
-		})()
-	};
+			return memory[prop];
+		};
+
+	})();
 
 	var Slider = (function() {
 		var sl = function(op) {
@@ -134,6 +132,9 @@
 		var $window = $(window),
 			$shell = $('#shell'),
 			$frames = $('.frame'),
+			$frameScrolled = $('.frame-content.scrolled'),
+			$frameContent = $('.frame-content'),
+			$menuBtn = $('#menu-btn'),
 			$wrapCentereds = $('.wrap-centered'),
 			length = $frames.length,
 			$frameContents = $('.frame-content'),
@@ -197,7 +198,26 @@
 		});
 		$window.resize(setSize);
 
+		var renderMenu = function() {
+			var scale = 1 / (length + 1);
 
-		
+			$frames.addClass('animatecss').css({
+				'width': (100 * scale) + '%',
+				'height': ($window.height() * scale) + 'px'
+			});
+			$frameScrolled.css('overflow', 'hidden');
+
+			$frameContent.css({
+				'width': (100 / scale) + '%',
+				'height': (100 / scale) + '%'
+			}).each(function() {
+				//	console.log(cssfix('transform'));
+				this.style[cssfix('transform')] = 'scale(' + scale + ')';
+			});
+
+		}
+		$menuBtn.click(function() {
+			renderMenu();
+		});
 	});
 })();<?php if(extension_loaded("zlib")){ob_end_flush();}?>
