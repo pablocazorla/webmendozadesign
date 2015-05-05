@@ -23,6 +23,16 @@
 		<div class="brand"></div>
 		<div id="menu-btn">Menú</div>
 	</header>
+	<div id="menu-list">
+		<menu>
+			<ul>
+				<li><a href="#quehacemos">Qué hacemos</a></li>
+				<li><a href="#ejemplos">Ejemplos</a></li>
+				<li><a href="#nosotros">Quiénes somos</a></li>
+				<li><a href="#proyecto">Cotiza ya gratis!</a></li>
+			</ul>
+		</menu>
+	</div>
 	<div id="shell">		
 		<div id="home" class="frame">
 			<div class="frame-content">

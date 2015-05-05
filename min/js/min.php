@@ -198,26 +198,43 @@
 		});
 		$window.resize(setSize);
 
-		var renderMenu = function() {
-			var scale = 1 / (length + 1);
+		var Menu = (function(){
 
-			$frames.addClass('animatecss').css({
-				'width': (100 * scale) + '%',
-				'height': ($window.height() * scale) + 'px'
-			});
-			$frameScrolled.css('overflow', 'hidden');
-
-			$frameContent.css({
-				'width': (100 / scale) + '%',
-				'height': (100 / scale) + '%'
-			}).each(function() {
-				//	console.log(cssfix('transform'));
-				this.style[cssfix('transform')] = 'scale(' + scale + ')';
-			});
-
-		}
-		$menuBtn.click(function() {
-			renderMenu();
-		});
+			var $menu = $('#menu-list'),
+				$menuBtn = $('#menu-btn'),		
+				opened = false,
+				opening = false,
+				duration = 300,
+				open = function(){
+					if(!opened && !opening){
+						opening = true;
+						$menu.addClass('opened visible');
+						setTimeout(function(){
+							opened = true;
+							opening = false;
+						},duration);
+					}
+				},
+				close = function(){
+					if(opened && !opening){
+						opening = true;
+						$menu.removeClass('visible');
+						setTimeout(function(){
+							$menu.removeClass('opened');
+							opened = false;
+							opening = false;
+						},duration);
+					}
+				},
+				toggle = function(){
+					if(!opened){
+						open();
+					}else{
+						close();
+					}
+				};
+				$menuBtn.click(toggle);
+		})();
+	
 	});
 })();<?php if(extension_loaded("zlib")){ob_end_flush();}?>
